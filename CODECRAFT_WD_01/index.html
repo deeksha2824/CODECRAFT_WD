@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Landing Page</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Your Custom Styles - Make sure style.css is in the same folder -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="font-sans bg-slate-50 dark:bg-slate-900">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="glass-nav fixed w-full z-50 py-4 px-6 transition-all">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-white">
+                <span class="bg-indigo-600 px-3 py-1 rounded-lg shadow-lg">MY CODE</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+
+            <div class="md:hidden flex items-center space-x-4">
+                <button id="darkModeMobile" class="text-white text-xl"><i class="fas fa-moon"></i></button>
+                <button id="mobileMenuBtn"
+                    class="hamburger focus:outline-none"><span></span><span></span><span></span></button>
+            </div>
+
+            <button id="darkModeToggle" class="hidden md:block text-white text-2xl ml-6">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <div id="mobileMenu"
+            class="mobile-menu fixed inset-y-0 right-0 w-64 bg-slate-900 bg-opacity-90 backdrop-blur-lg shadow-lg p-6 md:hidden">
+            <div class="flex justify-end mb-8">
+                <button id="closeMenuBtn" class="text-white text-2xl"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <a href="#home" class="nav-link text-lg">Home</a>
+                <a href="#features" class="nav-link text-lg">Features</a>
+                <a href="#pricing" class="nav-link text-lg">Pricing</a>
+                <a href="#about" class="nav-link text-lg">About</a>
+                <a href="#contact" class="nav-link text-lg">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="animated-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20 text-center md:text-left">
+            <h1 class="hero-title fade-up">
+                Interactive Navigation <br />
+                <span class="text-indigo-200">That Inspires</span>
+            </h1>
+            <p class="hero-desc fade-up">
+                Smooth scroll, glassmorphism, dark mode & animations – modern UI done right.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-x-4 fade-up">
+                <a href="#features" class="btn-primary">Get Started</a>
+                <a href="#about" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-title">✨ Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="feature-card fade-up">
+                    <i class="fas fa-mouse-pointer feature-icon text-amber-700"></i>
+                    <h3 class="feature-title">Hover Effects</h3>
+                    <p>Smooth hover transitions enhance engagement.</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <i class="fas fa-scroll feature-icon text-indigo-700"></i>
+                    <h3 class="feature-title">Scroll Detection</h3>
+                    <p>Adaptive navbar ensures constant visibility.</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <i class="fas fa-mobile-alt feature-icon text-blue-700"></i>
+                    <h3 class="feature-title">Mobile Ready</h3>
+                    <p>Clean responsive design with sliding mobile menu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-light">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="section-title">💰 Pricing Plans</h2>
+            <p class="text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
+                Flexible pricing – pay <strong>monthly</strong> or save with <strong>yearly billing</strong>.
+            </p>
+            <div class="flex justify-center items-center mb-14">
+                <span class="mr-3 text-slate-600 dark:text-slate-300">Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="pricingToggle" />
+                    <span class="slider"></span>
+                </label>
+                <span class="ml-3 text-slate-600 dark:text-slate-300">
+                    Yearly <span class="text-green-500 text-sm">(Save 20%)</span>
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="pricing-card fade-up">
+                    <h3 class="pricing-title">Basic</h3>
+                    <p class="pricing-price" data-monthly="9" data-yearly="86">$9<span>/mo</span></p>
+                    <ul class="pricing-list">
+                        <li><i class="fas fa-check"></i> Access to basic features</li>
+                        <li><i class="fas fa-check"></i> 5 Projects</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                    </ul>
+                    <a href="https://github.com/deeksha2824/CODECRAFT_WD" class="btn-secondary w-full block text-center mt-6">Start Basic</a>
+                </div>
+
+                <div class="pricing-card highlight fade-up">
+                    <h3 class="pricing-title">Pro</h3>
+                    <p class="pricing-price" data-monthly="29" data-yearly="278">$29<span>/mo</span></p>
+                    <ul class="pricing-list">
+                        <li><i class="fas fa-check"></i> All Basic features</li>
+                        <li><i class="fas fa-check"></i> Unlimited Projects</li>
+                        <li><i class="fas fa-check"></i> Priority Support</li>
+                        <li><i class="fas fa-check"></i> Advanced Analytics</li>
+                    </ul>
+                    <a href="https://github.com/deeksha2824/dct_stegno_c" class="btn-primary w-full block text-center mt-6">Go Pro</a>
+                </div>
+
+                <div class="pricing-card fade-up">
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <p class="pricing-price" data-monthly="99" data-yearly="950">$99<span>/mo</span></p>
+                    <ul class="pricing-list">
+                        <li><i class="fas fa-check"></i> All Pro features</li>
+                        <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+                        <li><i class="fas fa-check"></i> Team Management</li>
+                        <li><i class="fas fa-check"></i> Custom Integrations</li>
+                    </ul>
+                    <a href="https://github.com/deeksha2824" class="btn-secondary w-full block text-center mt-6">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section fade-up">
+        <h2 class="cta-title">🚀 Ready to Elevate UX?</h2>
+        <p class="cta-desc">
+            Craft interactive and aesthetic landing pages fast with TailwindCSS + Dark Mode
+        </p>
+        <a href="#contact" class="btn-primary">Get the Code</a>
+    </section>
+
+    <section id="about" class="section-light">
+        <div class="max-w-4xl mx-auto px-6 fade-up">
+            <h2 class="section-title">👋 About Interactive Nav</h2>
+            <p class="text-lg text-slate-700 dark:text-slate-300 mb-8">
+                Interactive Nav is a modern landing page template built to showcase cutting-edge navigation, beautiful
+                gradients, and seamless dark mode transitions. <br />
+                Our goal is to help creators launch stylish sites faster, with no design compromises.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div>
+                    <h3 class="font-semibold text-indigo-600 dark:text-indigo-400 mb-2">Our Mission</h3>
+                    <p>
+                        Empower anyone to build elegant, interactive web apps—with zero coding stress.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-indigo-600 dark:text-indigo-400 mb-2">Our Stack</h3>
+                    <ul class="list-disc list-inside ml-2">
+                        <li>TailwindCSS</li>
+                        <li>HTML5 & ES6 JavaScript</li>
+                        <li>FontAwesome Icons</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-10">
+                <h3 class="font-semibold text-indigo-600 dark:text-indigo-400 mb-2">Meet the Team</h3>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div>
+                        <img src="Screenshot 2025-08-17 213308.png" alt="Team Member"
+                            class="w-16 h-16 rounded-full mb-2">
+                        <p class="font-semibold">Deeksha J Gowda</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Lead Developer</p>
+                        <a href="https://www.linkedin.com/in/deeksha-gowda-1632b5262" target="_blank"
+                            class="text-indigo-600 dark:text-indigo-400 hover:underline text-sm">LinkedIn</a>
+                    </div>
+                    <div>
+                        <img src="Screenshot 2025-08-17 213520.png" alt="Team Member"
+                            class="w-16 h-16 rounded-full mb-2">
+                        <p class="font-semibold">Ananya I Naik</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Web Developer</p>
+                        <a href="https://linkedin.com/in/ananya-i-0492b4262" target="_blank"
+                            class="text-indigo-600 dark:text-indigo-400 hover:underline text-sm">LinkedIn</a>
+                    </div>
+                    <div>
+                        <img src="Screenshot 2025-08-17 213703.png" alt="Team Member"
+                            class="w-16 h-16 rounded-full mb-2">
+                        <p class="font-semibold">Heramba R Naik</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">UI Designer</p>
+                        <a href="https://linkedin.com/in/heramba-r-naik-6127542b0" target="_blank"
+                            class="text-indigo-600 dark:text-indigo-400 hover:underline text-sm">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-semibold text-indigo-600 dark:text-indigo-400 mb-2">Contact Us</h3>
+                <p>Email: <a href="mailto:info@interactivenav.com"
+                        class="text-indigo-600 dark:text-indigo-400 hover:underline">deekshalj@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-light">
+        <div class="max-w-4xl mx-auto px-6 fade-up">
+            <h2 class="section-title">📩 Contact Us</h2>
+            <p class="text-center text-slate-600 dark:text-slate-300 mb-8">
+                Have questions or need a custom solution? Drop us a message.
+            </p>
+            <form id="contactForm" class="bg-white dark:bg-slate-800 shadow-lg rounded-xl p-8 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" id="name" placeholder="Your Name" required class="form-input" />
+                    <input type="email" id="email" placeholder="Your Email" required class="form-input" />
+                </div>
+                <input type="text" id="subject" placeholder="Subject" class="form-input" />
+                <textarea id="message" placeholder="Message..." required class="form-input h-32"></textarea>
+                <button type="submit" class="btn-primary w-full">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Success Toast -->
+    <div id="toast" class="toast hidden">✅ Message sent successfully!</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <h3 class="footer-logo">Interactive Nav</h3>
+                <p class="footer-text">Responsive navigation with modern design.</p>
+            </div>
+            <div>
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul>
+                    <li><a href="#home" class="footer-link">Home</a></li>
+                    <li><a href="#features" class="footer-link">Features</a></li>
+                    <li><a href="#pricing" class="footer-link">Pricing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Resources</h4>
+                <ul>
+                    <li><a href="docs.html" class="footer-link">Docs</a></li>
+                    <li><a href="tutorials.html" class="footer-link">Tutorials</a></li>
+                    <li><a href="blog.html" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Connect</h4>
+                <div class="flex space-x-4 text-xl text-slate-400">
+                    <a href="https://github.com/deeksha2824" class="hover:text-white"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Advanced Navigation Demo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Your Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>

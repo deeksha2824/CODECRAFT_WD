@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tutorials - Interactive Nav</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body class="font-sans bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100">
+
+  <!-- Navbar -->
+  <nav id="mainNav" class="glass-nav fixed w-full z-50 py-4 px-6 transition-all bg-opacity-75">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-white">
+        <span class="bg-indigo-600 px-3 py-1 rounded-lg shadow-lg">Logo</span>
+      </a>
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="index.html#pricing" class="nav-link">Pricing</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="tutorials.html" class="nav-link">Tutorials</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-24 max-w-7xl mx-auto px-6">
+
+    <h1 class="text-4xl font-bold mb-8">Tutorials</h1>
+
+    <ul class="space-y-6">
+      <li>
+        <a href="https://www.youtube.com/watch?v=pTYQyXfIMEY" class="block p-6 rounded-xl bg-indigo-50 dark:bg-indigo-800 hover:bg-indigo-100 dark:hover:bg-indigo-700 transition">
+          <h2 class="text-2xl font-semibold mb-2">How to Create Animated Pricing Toggles</h2>
+          <p>Learn step-by-step to build a dynamic pricing toggle with animation effects using JavaScript and TailwindCSS.</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="https://www.youtube.com/watch?v=MvN8VJrEWeU" class="block p-6 rounded-xl bg-indigo-50 dark:bg-indigo-800 hover:bg-indigo-100 dark:hover:bg-indigo-700 transition">
+          <h2 class="text-2xl font-semibold mb-2">Deploying Your Tailwind Website on Netlify</h2>
+          <p>A beginner’s tutorial on deploying your static Tailwind project quickly and for free.</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="https://www.youtube.com/watch?v=_gKEUYarehE" class="block p-6 rounded-xl bg-indigo-50 dark:bg-indigo-800 hover:bg-indigo-100 dark:hover:bg-indigo-700 transition">
+          <h2 class="text-2xl font-semibold mb-2">Implementing Dark Mode with Toggle</h2>
+          <p>How to add a dark mode toggle that beautifully switches your website colors without a page reload.</p>
+        </a>
+      </li>
+    </ul>
+
+  </main>
+   <!-- Your Script -->
+    <script src="script.js"></script>
+</body>
+</html>
