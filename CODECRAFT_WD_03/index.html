@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vintage Tic-Tac-Toe</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Open+Sans:400,700" rel="stylesheet" />
+  <style>
+    body {
+      background: #FFF8E1;
+      font-family: 'Open Sans', sans-serif;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://www.transparenttextures.com/patterns/old-mathematics.png');
+      margin: 0;
+    }
+    .container {
+      background: rgba(245, 245, 220, 0.98);
+      border: 2.5px solid #E8927C;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(91,57,38,0.12);
+      padding: 40px 32px 32px 32px;
+      max-width: 500px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #6E7B62;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    #mode-selector {
+      text-align: center;
+      margin-bottom: 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: #5B3926;
+    }
+    #mode-selector label {
+      margin-right: 20px;
+      cursor: pointer;
+    }
+    #mode-selector input[type="radio"] {
+      margin-right: 6px;
+      cursor: pointer;
+    }
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      grid-template-rows: repeat(3, 80px);
+      gap: 8px;
+      justify-content: center;
+      margin: 18px 0 12px 0;
+    }
+    .cell {
+      text-align: center;
+      width: 80px;
+      height: 80px;
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      background: #FFF8E1;
+      border: 2px solid #7BA197;
+      border-radius: 10px;
+      color: #D87C5A;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(91,57,38,0.07);
+      transition: background 0.2s;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cell:hover {
+      background: #E8927C;
+      color: #FFF8E1;
+    }
+    .status {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      color: #5B3926;
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      min-height: 30px;
+    }
+    button#reset {
+      display: block;
+      margin: 0 auto;
+      font-size: 1rem;
+      background: #7BA197;
+      color: #FFF8E1;
+      border: none;
+      border-radius: 7px;
+      padding: 8px 22px;
+      font-family: 'Open Sans', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(91,57,38,0.11);
+      margin-top: 12px;
+      letter-spacing: 1.3px;
+      transition: background 0.2s;
+    }
+    button#reset:hover {
+      background: #D87C5A;
+      color: #FFF8E1;
+    }
+    .footer {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #7BA197;
+      letter-spacing: 0.5px;
+      font-family: 'Playfair Display', serif;
+    }
+    .powerups {
+      margin: 16px 0 8px 0;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .powerups button {
+      font-family: 'Playfair Display', serif;
+      background: #E8927C;
+      color: #FFF8E1;
+      border: 2px solid #7BA197;
+      border-radius: 6px;
+      padding: 6px 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .powerups button:disabled {
+      background: #ead6c6;
+      color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tic-Tac-Toe</h1>
+    <div id="mode-selector" style="text-align:center; margin-bottom:18px;">
+      <label>
+        <input type="radio" name="gamemode" value="human" checked />
+        Two Players
+      </label>
+      <label style="margin-left:12px;">
+        <input type="radio" name="gamemode" value="computer" />
+        Computer vs Player
+      </label>
+    </div>
+    <div class="status" id="status">Player X's turn</div>
+    <div class="game-board" id="board">
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
+    <button id="reset">Reset Game</button>
+    <div class="powerups">
+      <button id="eraser">🧽 Eraser</button>
+      <button id="magnifier">🔍 Magnifier</button>
+    </div>
+
+    <div class="footer">Vintage Edition</div>
+  </div>
+
+  <script>
+    const cells = Array.from(document.querySelectorAll('.cell'));
+    const status = document.getElementById('status');
+    const resetBtn = document.getElementById('reset');
+    let currentPlayer = 'X';
+    let gameOver = false;
+    let eraserUsed = { X: false, O: false };
+    let erasingMode = false;
+    let magnifierUsed = { X: false, O: false };
+    let gameMode = 'human'; // default
+
+    // Change game mode and reset when mode changes
+    document.querySelectorAll('input[name="gamemode"]').forEach(el => {
+      el.addEventListener('change', function () {
+        gameMode = this.value;
+        resetGame();
+      });
+    });
+
+    function checkWin() {
+      const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+        [0, 4, 8], [2, 4, 6]              // diagonals
+      ];
+      for (let pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+          pattern.forEach(i => {
+            cells[i].style.background = '#D87C5A';
+            cells[i].style.color = '#FFF8E1';
+          });
+          return cells[a].textContent;
+        }
+      }
+      return null;
+    }
+
+    function checkDraw() {
+      return cells.every(cell => cell.textContent);
+    }
+
+    function computerMove() {
+      if (gameOver) return;
+      // Basic AI: pick first empty cell
+      for (const cell of cells) {
+        if (!cell.textContent) {
+          cell.textContent = 'O';
+          cell.style.color = '#D87C5A';
+          const winner = checkWin();
+          if (winner) {
+            status.textContent = `Player ${winner} wins!`;
+            gameOver = true;
+            return;
+          }
+          if (checkDraw()) {
+            status.textContent = "It's a draw!";
+            gameOver = true;
+            return;
+          }
+          currentPlayer = 'X';
+          status.textContent = "Player X's turn";
+          break;
+        }
+      }
+    }
+
+    function handleCellClick(e) {
+      if (gameOver || e.target.textContent) return;
+      if (erasingMode) {
+        if (e.target.textContent) {
+          e.target.textContent = '';
+          e.target.style.background = '#FFF8E1';
+          eraserUsed[currentPlayer] = true;
+          document.getElementById('eraser').disabled = true;
+          erasingMode = false;
+          status.textContent = `Eraser used. Player ${currentPlayer}'s turn.`;
+        }
+        return;
+      }
+
+      e.target.textContent = currentPlayer;
+      e.target.style.color = currentPlayer === 'X' ? '#3D2C1F' : '#D87C5A';
+
+      let winner = checkWin();
+      if (winner) {
+        status.textContent = `Player ${winner} wins!`;
+        gameOver = true;
+        return;
+      }
+      if (checkDraw()) {
+        status.textContent = "It's a draw!";
+        gameOver = true;
+        return;
+      }
+
+      if (gameMode === 'human') {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        status.textContent = `Player ${currentPlayer}'s turn`;
+      } else {
+        if (currentPlayer === 'X') {
+          currentPlayer = 'O';
+          status.textContent = "Computer's turn...";
+          setTimeout(computerMove, 600);
+        }
+      }
+    }
+
+    // Power-up: Magnifier shows potential winning move
+    document.getElementById('magnifier').addEventListener('click', function () {
+      if (magnifierUsed[currentPlayer] || gameOver) return;
+      let highlighted = false;
+
+      for (let i = 0; i < 9; i++) {
+        if (!cells[i].textContent) {
+          cells[i].textContent = currentPlayer;
+          if (checkWin() === currentPlayer) {
+            cells[i].style.background = '#FFDAB9';
+            setTimeout(() => {
+              cells[i].style.background = '#FFF8E1';
+              cells[i].textContent = '';
+            }, 800);
+            highlighted = true;
+            break;
+          }
+          cells[i].textContent = '';
+        }
+      }
+
+      if (!highlighted) {
+        status.textContent = `No instant-win moves available!`;
+      }
+      magnifierUsed[currentPlayer] = true;
+      document.getElementById('magnifier').disabled = true;
+    });
+
+    // Power-up: Eraser lets player clear one occupied cell
+    document.getElementById('eraser').addEventListener('click', function () {
+      if (eraserUsed[currentPlayer] || gameOver) return;
+      status.textContent = `Select a cell to erase, ${currentPlayer}`;
+      erasingMode = true;
+    });
+
+    resetBtn.addEventListener('click', resetGame);
+    cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+
+    function resetGame() {
+      cells.forEach(cell => {
+        cell.textContent = '';
+        cell.style.background = '#FFF8E1';
+        cell.style.color = '#D87C5A';
+      });
+      currentPlayer = 'X';
+      status.textContent = "Player X's turn";
+      gameOver = false;
+      eraserUsed = { X: false, O: false };
+      magnifierUsed = { X: false, O: false };
+      erasingMode = false;
+      document.getElementById('eraser').disabled = false;
+      document.getElementById('magnifier').disabled = false;
+    }
+  </script>
+</body>
+</html>
