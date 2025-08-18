@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stopwatch Web Application</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="stopwatch-container">
+    <h1>Stopwatch</h1>
+    <div id="timer">00:00:00.000</div>
+
+    <div class="buttons">
+      <button id="startBtn" class="button">Start</button>
+      <button id="pauseBtn" class="button" disabled>Pause</button>
+      <button id="resetBtn" class="button" disabled>Reset</button>
+      <button id="lapBtn" class="button" disabled>Lap</button>
+    </div>
+
+    <div class="row-bottom">
+      <button id="exportBtn" class="button">Export Laps</button>
+      <button id="themeToggleBtn" class="button">Toggle Theme</button>
+      <button id="soundBtn" class="button">Sound: Off</button>
+      <button id="shortcutBtn" class="button">Shortcuts</button>
+      <button id="modeToggleBtn" class="button">Switch to Countdown</button>
+    </div>
+
+    <div class="divider"></div>
+    <ul id="laps" class="laps-list"></ul>
+
+    <div id="shortcutModal" class="modal">
+      <div class="modal-content">
+        <h2>Keyboard Shortcuts</h2>
+        <ul>
+          <li><strong>Space</strong>: Start / Pause</li>
+          <li><strong>R</strong>: Reset</li>
+          <li><strong>L</strong>: Lap</li>
+          <li><strong>T</strong>: Toggle Theme</li>
+        </ul>
+        <button id="closeModalBtn" class="modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

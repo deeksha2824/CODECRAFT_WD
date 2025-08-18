@@ -1,0 +1,229 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #5C27FE 10%, #181B24 90%);
+  --primary: #5C27FE;
+  --accent: #FFCC00;
+  --text-main: #FAFAFA;
+  --button-bg: #222245;
+  --button-hover-bg: #5C27FE;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  user-select: none;
+}
+
+.stopwatch-container {
+  background: rgba(34, 34, 69, 0.90);
+  border-radius: 28px;
+  padding: 48px 40px 32px 40px;
+  width: 600px;
+  box-shadow: 0 8px 32px rgba(44, 50, 88, 0.22);
+  text-align: center;
+}
+
+h1 {
+  font-weight: 800;
+  margin-bottom: 16px;
+  font-size: 2.75rem;
+  letter-spacing: 1px;
+}
+
+#timer {
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  margin-bottom: 36px;
+  font-variant-numeric: tabular-nums;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.button {
+  flex: 1;
+  background: rgba(30, 30, 50, 0.85);
+  border: none;
+  border-radius: 8px;
+  padding: 14px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+  transition: background 0.25s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(92,39,254,0.14);
+  margin: 0 0.5vw;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--primary);
+  color: var(--text-main);
+  box-shadow: 0 3px 14px rgba(255,204,0,0.07);
+}
+
+.row-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.divider {
+  height: 1px;
+  width: 90%;
+  margin: 22px auto 10px auto;
+  background: linear-gradient(90deg, transparent, #A6B1E1 60%, transparent);
+  opacity: 0.24;
+}
+
+.laps-list {
+  max-height: 160px;
+  overflow-y: auto;
+  margin-top: 8px;
+  text-align: left;
+  padding-left: 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.laps-list li {
+  padding: 8px 3px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-weight: 500;
+  color: #e3e2ee;
+}
+
+.laps-list li:nth-child(odd) {
+  background: rgba(255,255,255,0.035);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .stopwatch-container {
+    width: 98vw;
+    padding: 22px 5vw 14px 5vw;
+  }
+  #timer {
+    font-size: 2.2rem;
+  }
+  .button {
+    padding: 8px 0;
+    font-size: 1rem;
+  }
+}
+
+/* Light Theme Improvements */
+body.light-theme {
+  background: linear-gradient(135deg, #F7F5FF 10%, #c5cef6 90%);
+  color: #2a3144;
+}
+
+body.light-theme .stopwatch-container {
+  background-color: rgba(255,255,255,0.94);
+  color: #222;
+}
+
+body.light-theme .button {
+  background: #E4E7FF;
+  color: #444;
+}
+
+body.light-theme .button:hover:not(:disabled) {
+  background: #A6B1E1;
+  color: #222;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  overflow: auto;
+  background: rgba(44, 50, 88, 0.47);
+  backdrop-filter: blur(3px);
+  transition: background 0.18s;
+}
+
+.modal-content {
+  background: linear-gradient(120deg, #352255 70%, #282044 100%);
+  margin: 60px auto;
+  padding: 32px 24px 24px 24px;
+  border-radius: 18px;
+  width: 92%;
+  max-width: 340px;
+  box-shadow: 0 6px 36px rgba(44, 50, 88, 0.28);
+  color: #FAFAFA;
+  text-align: center;
+  animation: popin 0.38s;
+}
+
+@keyframes popin {
+  from {transform: scale(0.95) translateY(60px); opacity: 0;}
+  to {transform: scale(1) translateY(0); opacity: 1;}
+}
+
+.modal-content h2 {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFCC00;
+  letter-spacing: 1px;
+}
+
+.modal-content ul {
+  text-align: left;
+  margin-bottom: 22px;
+  font-size: 1.12rem;
+}
+
+.modal-content li {
+  padding-bottom: 7px;
+}
+
+.modal-close {
+  padding: 9px 30px;
+  background: #FFCC00;
+  color: #35314d;
+  font-weight: 800;
+  border: none;
+  border-radius: 7px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s;
+}
+
+.modal-close:hover {
+  background: #FFD93A;
+  color: #181B24;
+}
+
+body.light-theme .laps-list li {
+  color: #3b2e68; /* A dark, highly readable shade */
+  background: rgba(102, 95, 145, 0.07);
+  border-bottom: 1px solid rgba(120,110,180,0.13);
+}
+body.light-theme .laps-list li:nth-child(odd) {
+  background: rgba(60,52,110,0.04);
+}
